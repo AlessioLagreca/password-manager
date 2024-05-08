@@ -3,7 +3,7 @@ import { query } from "../../lib/database";
 
 export async function GET(req: NextRequest) {
 	try {
-		const result = await query("SELECT servizio FROM mia_tabella");
+		const result = await query("SELECT * FROM mia_tabella");
 		return new Response(JSON.stringify(result.rows), {
 			status: 200,
 			headers: {

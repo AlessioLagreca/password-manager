@@ -1,5 +1,6 @@
 import { NextRequest } from "next/server";
 import { query } from "../../lib/database";
+import { randomBytes, createCipheriv } from "crypto";
 
 export async function POST(req: NextRequest) {
 	console.log("Request received", req.method);
@@ -11,9 +12,22 @@ export async function POST(req: NextRequest) {
 		const data = await req.json();
 		const { servizio, password } = data;
 
+		// Configurazione per la crittografia
+		// const key = Buffer.from(process.env.ENCRYPTION_KEY, "hex");
+		const encryptionKey = process.env.ENCRYPTION_KEY;
+		if (!encryptionKey) {
+			throw new Error("ENCRYPTION_KEY is not defined in the environment variables.");
+		}
+		const key = Buffer.from(encryptionKey, "hex");
+		const iv = randomBytes(16); // Vettore di inizializzazione
+		const cipher = createCipheriv("aes-256-cbc", key, iv);
+		let encrypted = cipher.update(password, "utf8", "hex");
+		encrypted += cipher.final("hex");
+		const encryptedPassword = iv.toString("hex") + ":" + encrypted;
+
 		const result = await query("INSERT INTO mia_tabella (servizio, password) VALUES ($1, $2) RETURNING *", [
 			servizio,
-			password,
+			encryptedPassword,
 		]);
 
 		return new Response(JSON.stringify(result.rows[0]), {

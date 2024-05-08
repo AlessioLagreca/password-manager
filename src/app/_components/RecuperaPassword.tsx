@@ -5,7 +5,7 @@ interface Service {
 }
 
 const RecuperaPassword: React.FC = () => {
-	const [service, setService] = useState("");
+	const [service, setService] = useState("facebook");
 	const [password, setPassword] = useState("");
 	const [services, setServices] = useState<Service[]>([]);
 

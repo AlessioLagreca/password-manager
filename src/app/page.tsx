@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import RecuperaPassword from "./_components/RecuperaPassword";
+import Tabella from "./_components/tabella";
+import AggiungiPassword from "./_components/addPassword";
 
 // This is a password manager interface that let the user add new password to a linux server database,
 // the user can also edit and delete the passwords from the database.
@@ -34,9 +36,16 @@ export default function Home() {
 	};
 
 	return (
-		<main className='flex min-h-screen flex-col items-center gap-8 p-24'>
-			<h1 className='text-3xl font-bold underline'>Password Manager</h1>
-			<RecuperaPassword />
+		<main className='flex min-h-screen justify-around items-center gap-8 p-24'>
+			<div className='flex flex-col gap-4'>
+				<h1 className='text-3xl font-bold underline'>Password Manager</h1>
+				<RecuperaPassword />
+				<Tabella />
+			</div>
+			<div className='flex flex-col gap-4'>
+				<h1 className='text-3xl font-bold underline'>Aggiungi Password</h1>
+				<AggiungiPassword />
+			</div>
 		</main>
 	);
 }
