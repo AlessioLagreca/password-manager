@@ -8,7 +8,7 @@ const AggiungiPassword: React.FC = () => {
 
 	const handleSubmit = async (event: React.FormEvent) => {
 		event.preventDefault();
-		const response = await fetch("/api/prova/", {
+		const response = await fetch("/api/add&cypher/", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",

@@ -23,11 +23,13 @@ export async function POST(req: NextRequest) {
 		const cipher = createCipheriv("aes-256-cbc", key, iv);
 		let encrypted = cipher.update(password, "utf8", "hex");
 		encrypted += cipher.final("hex");
-		const encryptedPassword = iv.toString("hex") + ":" + encrypted;
+		const ivHex = iv.toString("hex");
+		const encryptedPassword = encrypted;
 
-		const result = await query("INSERT INTO mia_tabella (servizio, password) VALUES ($1, $2) RETURNING *", [
+		const result = await query("INSERT INTO mia_tabella (servizio, password, ivHex) VALUES ($1, $2, $3) RETURNING *", [
 			servizio,
 			encryptedPassword,
+			ivHex,
 		]);
 
 		return new Response(JSON.stringify(result.rows[0]), {
