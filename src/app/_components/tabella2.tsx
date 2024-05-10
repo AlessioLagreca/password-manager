@@ -18,13 +18,14 @@ interface UserData {
 	email: string;
 	nomeUtente: string;
 	password: string;
-	ivHex: string;
+	ivhex: string;
 }
 
 export default function Tabella2() {
 	const [userData, setUserData] = useState<UserData[]>([]);
 
 	// CHIAMIAMO I DATI DEL DATABASE (NOME, EMAIL, NOMEUTENTE, PASSWORD) APPENA IL COMPONENTE VIENE MONTATO
+	// E LI METTIAMO IN "userData"
 	useEffect(() => {
 		const fetchData = async () => {
 			const response = await fetch("/api/getServizi");
@@ -35,14 +36,14 @@ export default function Tabella2() {
 		fetchData();
 	}, []);
 
-	const decryptPassword = async (encryptedPassword: string, ivHex: string) => {
+	const decryptPassword = async (pass: string, ivhex: string) => {
 		try {
 			const response = await fetch("/api/decifra", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify({ encryptedPassword, ivHex }),
+				body: JSON.stringify({ pass, ivhex }),
 			});
 			const data = await response.json();
 			if (response.ok) {
@@ -88,7 +89,7 @@ export default function Tabella2() {
 								<TableCell>{user.nomeUtente}</TableCell>
 								<TableCell>{user.password}</TableCell>
 								<TableCell className='hidden md:table-cell'>
-									<Button onClick={() => decryptPassword(user.password, user.ivHex)}>Decifra</Button>
+									<Button onClick={() => decryptPassword(user.password, user.ivhex)}>Decifra</Button>
 								</TableCell>
 								<TableCell>
 									<DropdownMenu>
