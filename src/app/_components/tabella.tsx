@@ -10,6 +10,7 @@ import {
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Toaster, toast } from "sonner";
 import Dialogo from "./dialogo";
 
 interface UserData {
@@ -18,6 +19,7 @@ interface UserData {
 	nomeUtente: string;
 	password: string;
 	ivhex: string;
+	id: number;
 }
 
 export default function Tabella2() {
@@ -37,6 +39,7 @@ export default function Tabella2() {
 		fetchData();
 	}, []);
 
+	// DECIFRA LA PASSWORD
 	const decryptPassword = async (pass: string, ivhex: string) => {
 		try {
 			const response = await fetch("/api/decifra", {
@@ -53,17 +56,39 @@ export default function Tabella2() {
 				setOpen(true);
 				return data.decryptedPassword;
 			} else {
+				toast.error("Decryption error");
 				throw new Error(data.error || "Failed to decrypt password");
 			}
 		} catch (error) {
 			console.error("Decryption error:", error);
+			toast.error("Decryption error");
 		}
 	};
 
 	console.log(userData);
 
+	// RIMUOVI LA RIGA DAL DATABASE
+	const removeRiga = async (id: number) => {
+		const response = await fetch("/api/removeRiga", {
+			method: "DELETE",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ id }),
+		});
+		const data = await response.json();
+		if (response.ok) {
+			toast.success("Row removed successfully");
+			console.log("Row removed successfully:", data);
+		} else {
+			toast.error("Error removing row");
+			console.error("Error removing row:", data.error);
+		}
+	};
+
 	return (
 		<>
+			<Toaster richColors />
 			<Dialogo passData={passdata} open={open} setOpen={setOpen} />
 			<Card>
 				<CardHeader>
@@ -108,7 +133,7 @@ export default function Tabella2() {
 											<DropdownMenuContent align='end'>
 												<DropdownMenuLabel>Actions</DropdownMenuLabel>
 												<DropdownMenuItem>Edit</DropdownMenuItem>
-												<DropdownMenuItem>Delete</DropdownMenuItem>
+												<DropdownMenuItem onClick={() => removeRiga(user.id)}>Delete</DropdownMenuItem>
 											</DropdownMenuContent>
 										</DropdownMenu>
 									</TableCell>

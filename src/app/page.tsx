@@ -35,14 +35,14 @@ export default function Home() {
 	};
 
 	return (
-		<main className='flex min-h-screen flex-col justify-around items-center gap-8 p-24'>
-			<div className='flex flex-col gap-4'>
-				<h1 className='text-5xl p-4 font-bold mb-16 underline bg-gradient-to-tr from-blue-500 to-blue-300 text-transparent bg-clip-text'>
+		<main className='flex flex-col gap-4 justify-center items-center'>
+			<div className='flex flex-col gap-4 max-w-6xl'>
+				<h1 className='text-5xl p-4 font-bold my-12 underline bg-gradient-to-br from-blue-500 to-blue-300 text-transparent bg-clip-text'>
 					Password Manager
 				</h1>
 				<Tabella />
 			</div>
-			<div className='flex flex-col gap-4'>
+			<div className='flex flex-col gap-4 mt-36'>
 				<h1 className='text-3xl font-bold underline'>Aggiungi Password</h1>
 				<AggiungiPassword />
 			</div>
