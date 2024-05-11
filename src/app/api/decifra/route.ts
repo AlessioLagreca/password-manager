@@ -25,6 +25,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
 			return new Response(JSON.stringify({ error: "Decryption failed" }), { status: 500 });
 		}
 	} else {
-		return new Response(JSON.stringify({ error: "Method Not Allowed" }), { status: 405 });
+		return new Response(JSON.stringify({ error: "Metodo non consentito" }), { status: 405 });
 	}
 }
