@@ -23,7 +23,7 @@ const AggiungiPassword: React.FC = () => {
 	};
 
 	return (
-		<form className='mt-24 flex flex-col gap-4 items-center' onSubmit={handleSubmit}>
+		<form className='mt-4 flex flex-col gap-4 items-center' onSubmit={handleSubmit}>
 			<div>
 				<input
 					className='w-xl border-[2px] border-slate-800 rounded-md p-2'

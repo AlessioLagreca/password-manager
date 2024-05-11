@@ -37,7 +37,7 @@ export default function Home() {
 	return (
 		<main className='flex min-h-screen flex-col justify-around items-center gap-8 p-24'>
 			<div className='flex flex-col gap-4'>
-				<h1 className='text-5xl p-4 font-bold mb-24 underline bg-gradient-to-tr from-blue-500 to-blue-300 text-transparent bg-clip-text'>
+				<h1 className='text-5xl p-4 font-bold mb-16 underline bg-gradient-to-tr from-blue-500 to-blue-300 text-transparent bg-clip-text'>
 					Password Manager
 				</h1>
 				<Tabella />
