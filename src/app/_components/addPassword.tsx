@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { Toaster, toast } from "sonner";
 
 const AggiungiPassword: React.FC = () => {
 	const [servizio, setServizio] = useState("");
@@ -20,39 +21,43 @@ const AggiungiPassword: React.FC = () => {
 		});
 		const result = await response.json();
 		console.log(result);
+		toast.success("Password aggiunta con successo");
 	};
 
 	return (
-		<form className='mt-4 flex flex-col gap-4 items-center' onSubmit={handleSubmit}>
-			<div>
-				<input
-					className='w-xl border-[2px] border-slate-800 rounded-md p-2'
-					id='servizio'
-					type='text'
-					placeholder='Servizio'
-					value={servizio}
-					onChange={(e) => setServizio(e.target.value)}
-					required
-				/>
-			</div>
-			<div>
-				<input
-					className='w-xl border-[2px] border-slate-800 rounded-md p-2'
-					id='password'
-					type='password'
-					placeholder='Password'
-					value={password}
-					onChange={(e) => setPassword(e.target.value)}
-					required
-				/>
-			</div>
-			<button
-				className='w-xl border-[2px] border-slate-800 rounded-md p-2 bg-slate-800 text-white font-medium'
-				type='submit'
-			>
-				Aggiungi Elemento
-			</button>
-		</form>
+		<>
+			<Toaster richColors />
+			<form className='mt-4 flex flex-col gap-4 items-center' onSubmit={handleSubmit}>
+				<div>
+					<input
+						className='w-xl border-[2px] border-slate-800 rounded-md p-2'
+						id='servizio'
+						type='text'
+						placeholder='Servizio'
+						value={servizio}
+						onChange={(e) => setServizio(e.target.value)}
+						required
+					/>
+				</div>
+				<div>
+					<input
+						className='w-xl border-[2px] border-slate-800 rounded-md p-2'
+						id='password'
+						type='password'
+						placeholder='Password'
+						value={password}
+						onChange={(e) => setPassword(e.target.value)}
+						required
+					/>
+				</div>
+				<button
+					className='w-xl border-[2px] border-slate-800 rounded-md p-2 bg-slate-800 text-white font-medium'
+					type='submit'
+				>
+					Aggiungi Elemento
+				</button>
+			</form>
+		</>
 	);
 };
 

@@ -26,6 +26,7 @@ export default function Tabella2() {
 	const [userData, setUserData] = useState<UserData[]>([]);
 	const [open, setOpen] = useState(false);
 	const [passdata, setPassdata] = useState("");
+	const [reloadPage, setReloadPage] = useState(true);
 
 	// CHIAMIAMO I DATI DEL DATABASE (NOME, EMAIL, NOMEUTENTE, PASSWORD) APPENA IL COMPONENTE VIENE MONTATO
 	// E LI METTIAMO IN "userData"
@@ -37,7 +38,7 @@ export default function Tabella2() {
 		};
 
 		fetchData();
-	}, []);
+	}, [reloadPage]);
 
 	// DECIFRA LA PASSWORD
 	const decryptPassword = async (pass: string, ivhex: string) => {
@@ -78,6 +79,7 @@ export default function Tabella2() {
 		});
 		const data = await response.json();
 		if (response.ok) {
+			setReloadPage(!reloadPage);
 			toast.success("Row removed successfully");
 			console.log("Row removed successfully:", data);
 		} else {
