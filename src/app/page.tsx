@@ -36,15 +36,11 @@ export default function Home() {
 	return (
 		<>
 			<Navbar />
-			<main className='flex flex-col gap-4 justify-center items-center'>
-				<div className='flex flex-col gap-4 max-w-6xl'>
-					<h1 className='text-5xl p-4 font-bold my-12 underline bg-gradient-to-br from-blue-500 to-blue-300 text-transparent bg-clip-text'>
-						Password Manager
-					</h1>
-					<Tabella />
-				</div>
-				<div className='flex flex-col gap-4 mt-36'>
-					<h1 className='text-3xl font-bold underline'>Aggiungi Password</h1>
+			<main className='flex gap-4 justify-between items-center px-16'>
+				<Tabella />
+
+				<div className='flex flex-col gap-4'>
+					<h1 className='text-3xl font-bold mb-8'>Aggiungi Password</h1>
 					<AggiungiPassword />
 				</div>
 			</main>
