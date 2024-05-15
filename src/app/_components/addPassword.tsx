@@ -10,7 +10,6 @@ import {
 	AlertDialogAction,
 	AlertDialogCancel,
 	AlertDialogContent,
-	AlertDialogDescription,
 	AlertDialogFooter,
 	AlertDialogHeader,
 	AlertDialogTitle,
@@ -44,51 +43,56 @@ const AggiungiPassword: React.FC = () => {
 	return (
 		<>
 			<Toaster richColors />
-			<AlertDialog open={open} onOpenChange={setOpen}>
-				<AlertDialogTrigger>Aggiungi Password</AlertDialogTrigger>
-				<AlertDialogContent>
-					<AlertDialogHeader>
-						<AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-					</AlertDialogHeader>
-					<form
-						className='mt-4 flex flex-col gap-4 items-center'
-						onSubmit={(e: React.FormEvent) => {
-							wait().then(() => setOpen(false));
-							e.preventDefault();
-							handleSubmit(e);
-						}}
-					>
-						<div className='grid w-full max-w-sm items-center gap-1.5'>
-							<Label htmlFor='servizio'>Servizio</Label>
-							<Input
-								type='text'
-								id='servizio'
-								placeholder='Servizio'
-								value={servizio}
-								onChange={(e) => setServizio(e.target.value)}
-								required
-							/>
-						</div>
-						<div className='grid w-full max-w-sm items-center gap-1.5'>
-							<Label htmlFor='servizio'>Password</Label>
-							<Input
-								type='password'
-								id='password'
-								placeholder='Password'
-								value={password}
-								onChange={(e) => setPassword(e.target.value)}
-								required
-							/>
-						</div>
-						<Button type='submit'>Aggiungi Password</Button>
+			<div className='rounded-lg border bg-card text-card-foreground shadow-sm items-center flex-1 flex flex-col p-8'>
+				<h1 className='text-3xl font-bold mb-8'>Aggiungi Password</h1>
+				<AlertDialog open={open} onOpenChange={setOpen}>
+					<AlertDialogTrigger className='bg-primary text-primary-foreground hover:bg-primary/90 rounded-md py-3 px-6 font-bold'>
+						Aggiungi Password
+					</AlertDialogTrigger>
+					<AlertDialogContent>
+						<AlertDialogHeader>
+							<AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+						</AlertDialogHeader>
+						<form
+							className='mt-4 flex flex-col gap-4 items-center'
+							onSubmit={(e: React.FormEvent) => {
+								wait().then(() => setOpen(false));
+								e.preventDefault();
+								handleSubmit(e);
+							}}
+						>
+							<div className='grid w-full max-w-sm items-center gap-1.5'>
+								<Label htmlFor='servizio'>Servizio</Label>
+								<Input
+									type='text'
+									id='servizio'
+									placeholder='Servizio'
+									value={servizio}
+									onChange={(e) => setServizio(e.target.value)}
+									required
+								/>
+							</div>
+							<div className='grid w-full max-w-sm items-center gap-1.5'>
+								<Label htmlFor='servizio'>Password</Label>
+								<Input
+									type='password'
+									id='password'
+									placeholder='Password'
+									value={password}
+									onChange={(e) => setPassword(e.target.value)}
+									required
+								/>
+							</div>
+							<Button type='submit'>Aggiungi Password</Button>
 
-						<AlertDialogFooter>
-							<AlertDialogCancel>Cancel</AlertDialogCancel>
-							<AlertDialogAction>Continue</AlertDialogAction>
-						</AlertDialogFooter>
-					</form>
-				</AlertDialogContent>
-			</AlertDialog>
+							<AlertDialogFooter>
+								<AlertDialogCancel>Cancel</AlertDialogCancel>
+								<AlertDialogAction>Continue</AlertDialogAction>
+							</AlertDialogFooter>
+						</form>
+					</AlertDialogContent>
+				</AlertDialog>
+			</div>
 		</>
 	);
 };
