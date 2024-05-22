@@ -6,8 +6,8 @@ function Navbar() {
 
 	return (
 		<nav className='flex flex-col px-16 mt-4 mb-12'>
-			<div className='flex flex-col justify-start items-baseline gap-2'>
-				<h1 className='text-6xl py-4 font-bold underline bg-gradient-to-br from-blue-500 to-green-300 bg-clip-text text-transparent'>
+			<div className='flex flex-col justify-start items-baseline'>
+				<h1 className='text-6xl py-2 font-bold underline bg-gradient-to-br from-blue-500 to-green-300 bg-clip-text text-transparent'>
 					Password Manager,
 				</h1>
 				<div className='flex gap-4 align-middle '>

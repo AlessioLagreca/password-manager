@@ -35,6 +35,8 @@ const AggiungiPassword: React.FC = () => {
 				password,
 			}),
 		});
+		setServizio("");
+		setPassword("");
 		const result = await response.json();
 		console.log(result);
 		toast.success("Password aggiunta con successo");
@@ -44,14 +46,14 @@ const AggiungiPassword: React.FC = () => {
 		<>
 			<Toaster richColors />
 			<div className='rounded-lg border bg-card text-card-foreground shadow-sm items-center flex-1 flex flex-col p-8'>
-				<h1 className='text-3xl font-bold mb-8'>Aggiungi Password</h1>
+				<h1 className='text-2xl font-bold mb-4'>Aggiungi Password</h1>
 				<AlertDialog open={open} onOpenChange={setOpen}>
 					<AlertDialogTrigger className='bg-primary text-primary-foreground hover:bg-primary/90 rounded-md py-3 px-6 font-bold'>
 						Aggiungi Password
 					</AlertDialogTrigger>
 					<AlertDialogContent>
 						<AlertDialogHeader>
-							<AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+							<AlertDialogTitle>Aggiungi una nuova password:</AlertDialogTitle>
 						</AlertDialogHeader>
 						<form
 							className='mt-4 flex flex-col gap-4 items-center'
@@ -85,10 +87,10 @@ const AggiungiPassword: React.FC = () => {
 							</div>
 							<Button type='submit'>Aggiungi Password</Button>
 
-							<AlertDialogFooter>
+							{/* <AlertDialogFooter>
 								<AlertDialogCancel>Cancel</AlertDialogCancel>
 								<AlertDialogAction>Continue</AlertDialogAction>
-							</AlertDialogFooter>
+							</AlertDialogFooter> */}
 						</form>
 					</AlertDialogContent>
 				</AlertDialog>
