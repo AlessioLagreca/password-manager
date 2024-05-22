@@ -32,7 +32,7 @@ export default function Tabella2() {
 	// E LI METTIAMO IN "userData"
 	useEffect(() => {
 		const fetchData = async () => {
-			const response = await fetch(`/api/getServizi?cache=${new Date().getTime()}`);
+			const response = await fetch("/api/getServizi");
 			const data = await response.json();
 			setUserData(data);
 		};
