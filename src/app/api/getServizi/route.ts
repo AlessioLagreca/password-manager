@@ -1,5 +1,7 @@
 import { NextRequest } from "next/server";
 import { query } from "../../lib/database";
+// trying to stop the cache from being used
+export const fetchCache = "force-no-store";
 
 export async function GET(req: NextRequest) {
 	try {
