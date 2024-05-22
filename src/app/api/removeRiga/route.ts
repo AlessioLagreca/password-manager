@@ -9,6 +9,10 @@ export async function DELETE(req: NextRequest) {
 			console.log(id);
 			const result = await query("DELETE FROM mia_tabella WHERE id = $1", [id]);
 
+			if (result.rowCount === 0) {
+				return new Response(JSON.stringify({ error: "Riga non trovata" }), { status: 404 });
+			}
+
 			return new Response(JSON.stringify({ result }));
 		} catch (error) {
 			return new Response(JSON.stringify({ error: (error as Error).message }), {
