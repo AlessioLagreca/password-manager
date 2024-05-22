@@ -15,7 +15,7 @@ export async function GET(req: NextRequest) {
 			status: 500,
 			headers: {
 				"Content-Type": "application/json",
-				"Cache-Control": "no-cache, no-store, must-revalidate",
+				"Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
 			},
 		});
 	}
