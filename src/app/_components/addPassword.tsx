@@ -21,6 +21,8 @@ const wait = () => new Promise((resolve) => setTimeout(resolve, 1000));
 const AggiungiPassword: React.FC = () => {
 	const [servizio, setServizio] = useState("");
 	const [password, setPassword] = useState("");
+	const [email, setEmail] = useState("");
+	const [nomeUtente, setNomeUtente] = useState("");
 	const [open, setOpen] = React.useState(false);
 
 	const handleSubmit = async (event: React.FormEvent) => {
@@ -32,6 +34,8 @@ const AggiungiPassword: React.FC = () => {
 			},
 			body: JSON.stringify({
 				servizio,
+				email,
+				nomeUtente,
 				password,
 			}),
 		});
@@ -75,6 +79,26 @@ const AggiungiPassword: React.FC = () => {
 								/>
 							</div>
 							<div className='grid w-full max-w-sm items-center gap-1.5'>
+								<Label htmlFor='email'>Email</Label>
+								<Input
+									type='email'
+									id='email'
+									placeholder='Email'
+									value={email}
+									onChange={(e) => setEmail(e.target.value)}
+								/>
+							</div>
+							<div className='grid w-full max-w-sm items-center gap-1.5'>
+								<Label htmlFor='nomeUtente'>Nome Utente</Label>
+								<Input
+									type='text'
+									id='nomeUtente'
+									placeholder='Nome Utente'
+									value={nomeUtente}
+									onChange={(e) => setNomeUtente(e.target.value)}
+								/>
+							</div>
+							<div className='grid w-full max-w-sm items-center gap-1.5'>
 								<Label htmlFor='servizio'>Password</Label>
 								<Input
 									type='password'
@@ -85,6 +109,7 @@ const AggiungiPassword: React.FC = () => {
 									required
 								/>
 							</div>
+
 							<Button type='submit'>Aggiungi Password</Button>
 
 							{/* <AlertDialogFooter>

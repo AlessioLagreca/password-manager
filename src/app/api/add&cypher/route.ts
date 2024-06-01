@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
 
 	try {
 		const data = await req.json();
-		const { servizio, password } = data;
+		const { servizio, email, nomeUtente, password } = data;
 
 		// Configurazione per la crittografia
 		// const key = Buffer.from(process.env.ENCRYPTION_KEY, "hex");
@@ -26,11 +26,10 @@ export async function POST(req: NextRequest) {
 		const ivHex = iv.toString("hex");
 		const encryptedPassword = encrypted;
 
-		const result = await query("INSERT INTO mia_tabella (servizio, password, ivHex) VALUES ($1, $2, $3) RETURNING *", [
-			servizio,
-			encryptedPassword,
-			ivHex,
-		]);
+		const result = await query(
+			"INSERT INTO mia_tabella (servizio, email, nomeUtente, password, ivHex) VALUES ($1, $2, $3, $4, $5) RETURNING *",
+			[servizio, email, nomeUtente, encryptedPassword, ivHex]
+		);
 
 		return new Response(JSON.stringify(result.rows[0]), {
 			status: 200,
