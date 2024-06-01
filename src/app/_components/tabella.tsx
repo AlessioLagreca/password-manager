@@ -92,7 +92,7 @@ export default function Tabella2() {
 		<>
 			<Toaster richColors />
 			<Dialogo passData={passdata} open={open} setOpen={setOpen} />
-			<Card>
+			<Card className='mb-10'>
 				<CardHeader>
 					<CardTitle>Il tuo vault</CardTitle>
 					<CardDescription>Tutte le tue password, in un unico posto.</CardDescription>

@@ -45,7 +45,7 @@ const AggiungiPassword: React.FC = () => {
 	return (
 		<>
 			<Toaster richColors />
-			<div className='rounded-lg border bg-card text-card-foreground shadow-sm items-center flex-1 flex flex-col p-8'>
+			<div className='rounded-lg border bg-card text-card-foreground shadow-sm items-center justify-center flex flex-1 max-h-40 flex-col p-8'>
 				<h1 className='text-2xl font-bold mb-4'>Aggiungi Password</h1>
 				<AlertDialog open={open} onOpenChange={setOpen}>
 					<AlertDialogTrigger className='bg-primary text-primary-foreground hover:bg-primary/90 rounded-md py-3 px-6 font-bold'>
