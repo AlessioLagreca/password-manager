@@ -16,7 +16,7 @@ import Dialogo from "./dialogo";
 interface UserData {
 	servizio: string;
 	email: string;
-	nomeUtente: string;
+	nome_utente: string;
 	password: string;
 	ivhex: string;
 	id: number;
@@ -118,7 +118,7 @@ export default function Tabella2() {
 								<TableRow key={index}>
 									<TableCell className='font-medium'>{user.servizio}</TableCell>
 									<TableCell>{user.email}</TableCell>
-									<TableCell>{user.nomeUtente}</TableCell>
+									<TableCell>{user.nome_utente}</TableCell>
 									<TableCell>{user.password}</TableCell>
 									<TableCell className='hidden md:table-cell'>
 										<Button onClick={() => decryptPassword(user.password, user.ivhex)}>Decifra</Button>
