@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
 		const encryptedPassword = encrypted;
 
 		const result = await query(
-			"INSERT INTO mia_tabella (servizio, email, nomeUtente, password, ivHex) VALUES ($1, $2, $3, $4, $5) RETURNING *",
+			"INSERT INTO mia_tabella (servizio, email, nome_utente, password, ivHex) VALUES ($1, $2, $3, $4, $5) RETURNING *",
 			[servizio, email, nomeUtente, encryptedPassword, ivHex]
 		);
 
